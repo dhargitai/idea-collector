@@ -9,7 +9,7 @@ const DeleteButton = ({ note, reloadIdeas }) => {
   }
 
   return (
-    <button onClick={handleDelete}>(X)</button>
+    <a className="delete is-medium" onClick={handleDelete}></a>
   );
 };
 

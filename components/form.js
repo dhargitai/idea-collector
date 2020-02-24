@@ -19,11 +19,27 @@ const Form = ({reloadIdeas}) => {
 
   return (
     <form onSubmit={handleSubmit} className="idea-form">
-      <label htmlFor="textarea"> Add ideas
-        <textarea value={text} id="textarea" onChange={event => setText(event.target.value)}></textarea>
-      </label>
+      <div className="field">
+        <label className="label">Add ideas</label>
+      </div>
+      <div className="field is-grouped">
+        <p className="control is-expanded">
+          <textarea
+            className="textarea"
+            value={text}
+            id="textarea"
+            onChange={event => setText(event.target.value)}
+          ></textarea>
+        </p>
+        <p className="control">
+          <button
+            className="button is-link is-large"
+            type="submit"
+            id="ideaAddButton"
+          >Save idea</button>
+        </p>
+      </div>
 
-      <button type="submit" className="submitButton">Save idea</button>
     </form>
   );
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Note from '../../components/note';
 import Form from '../../components/form';
+import './index.scss';
 
 export default () => {
   const [status, setStatus] = useState('loading');
@@ -36,20 +37,28 @@ export default () => {
   }, [status]);
 
   return (
-    <main>
-      <h1>Idea Collector</h1>
-      
-      <Form reloadIdeas={reloadIdeas} />
+    <main className="container">
+      <div className="columns is-centered">
 
-      { notes ? (
-        <ul>
-          { notes.map(note => (
-            <li key={note._id}>
-              <Note note={note} reloadIdeas={reloadIdeas} />
-            </li>
-          )) }
-        </ul>
-      ) : (<p>Loading ideas...</p>) }
+        <div className="column is-8">
+          <h1 className="title is-1">Idea Collector</h1>
+
+          <Form reloadIdeas={reloadIdeas} />
+
+          {notes ? (
+            <ul>
+              {notes.map(note => (
+                <li key={note._id}>
+                  <Note note={note} reloadIdeas={reloadIdeas} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>Loading ideas...</p>
+          )}
+        </div>
+
+      </div>
     </main>
   );
 }

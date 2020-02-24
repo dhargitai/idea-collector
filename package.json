@@ -5,15 +5,18 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.19.2",
+    "bulma": "^0.8.0",
     "dotenv": "^8.2.0",
     "gatsby": "^2.19.19",
+    "gatsby-plugin-sass": "^2.1.29",
+    "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gatsby": "gatsby"
+    "gatsby": "gatsby develop"
   },
   "author": "David Hargitai",
   "license": "ISC"

@@ -1,0 +1,13 @@
+@charset "utf-8";
+$title-color: rgb(0, 70, 191);
+@import "~bulma/bulma.sass";
+
+$fieldHeight: 140px;
+
+#textarea {
+  height: $fieldHeight;
+}
+
+#ideaAddButton {
+  height: $fieldHeight;
+}
