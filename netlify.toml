@@ -1,0 +1,9 @@
+[build]
+  functions = "functions"
+  publish = "build-output"
+  command = "echo 'default context'"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
