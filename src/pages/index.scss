@@ -1,5 +1,8 @@
 @charset "utf-8";
-$title-color: rgb(0, 70, 191);
+
+$title-color: rgb(41, 72, 126);
+$body-background-color: #fff9bb;
+
 @import "~bulma/bulma.sass";
 
 $fieldHeight: 140px;
@@ -10,4 +13,63 @@ $fieldHeight: 140px;
 
 #ideaAddButton {
   height: $fieldHeight;
+}
+
+.idea-form {
+  margin-bottom: 2em;
+}
+
+.deleteButton {
+  cursor: pointer;
+}
+
+#ideaAddButton.is-static,
+#ideaAddButton.is-static:focus,
+#ideaAddButton.is-static:active {
+  background-color: rgba($color: #59a4ff, $alpha: 1.0);
+  color: #e4f1ff;
+}
+
+.box {
+  background: rgb(239,245,247);
+  background: linear-gradient(0deg, rgba(239,245,247,1) 0%, rgba(255,255,255,1) 100%);
+  margin: 1em 0;
+}
+
+.icon-spin {
+  -webkit-animation: icon-spin 2s infinite linear;
+          animation: icon-spin 2s infinite linear;
+}
+
+@-webkit-keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #ideaAddButton {
+    height: auto;
+    margin-top: 1em;
+  }
+
+  .field.is-grouped > .control:not(:last-child) {
+    margin-right: 0;
+  }
 }

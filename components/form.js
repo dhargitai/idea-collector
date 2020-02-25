@@ -3,26 +3,32 @@ import axios from 'axios';
 
 const Form = ({reloadIdeas}) => {
   const [text, setText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const canSubmit = () => text.trim().length > 0 && !isLoading;
 
   const handleSubmit = async event => {
     event.preventDefault();
+    setIsLoading(true);
 
     if (text.trim() === '') {
+      setIsLoading(false);
       return;
     }
 
     await axios.post('/api/create-note', { text });
 
     setText('');
+    setIsLoading(false);
     reloadIdeas();
   };
 
   return (
     <form onSubmit={handleSubmit} className="idea-form">
-      <div className="field">
-        <label className="label">Add ideas</label>
-      </div>
-      <div className="field is-grouped">
+      <h2 className="title is-3 has-text-centered">
+        Add ideas
+      </h2>
+      <div className="field is-grouped is-block-mobile is-flex-tablet">
         <p className="control is-expanded">
           <textarea
             className="textarea"
@@ -31,9 +37,12 @@ const Form = ({reloadIdeas}) => {
             onChange={event => setText(event.target.value)}
           ></textarea>
         </p>
-        <p className="control">
+        <p className="control has-text-right">
           <button
-            className="button is-link is-large"
+            className={`button is-link is-large is-uppercase
+              ${!canSubmit() ? 'is-static' : ''}
+              ${isLoading ? 'is-loading' : ''}
+            `}
             type="submit"
             id="ideaAddButton"
           >Save idea</button>
