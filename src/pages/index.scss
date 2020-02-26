@@ -2,6 +2,8 @@
 
 $title-color: rgb(41, 72, 126);
 $body-background-color: #fff9bb;
+$footer-background-color: #3e3934;
+$footer-color: #cccccc;
 
 @import "~bulma/bulma.sass";
 
@@ -38,6 +40,16 @@ $fieldHeight: 140px;
   background: rgb(239,245,247);
   background: linear-gradient(0deg, rgba(239,245,247,1) 0%, rgba(255,255,255,1) 100%);
   margin: 1em 0;
+}
+
+footer {
+  a {
+    color: $link-light;
+
+    &:hover {
+      color: lightsteelblue;
+    }
+  }
 }
 
 .icon-spin {

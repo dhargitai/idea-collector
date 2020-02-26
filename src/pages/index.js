@@ -46,59 +46,67 @@ export default () => {
   }, [status]);
 
   return (
-    <section className="section">
-      <main className="container">
-        <div className="columns is-centered">
+    <>
+      <section className="section">
+        <main className="container">
+          <div className="columns is-centered">
 
-          <div className="column is-8">
-            <h1 className="title is-1 has-text-centered">
-              Idea Collector 
+            <div className="column is-8">
+              <h1 className="title is-1 has-text-centered">
+                Idea Collector
               <IconContext.Provider value={{ color: "#ffaa22" }}><FaLightbulb /></IconContext.Provider>
-            </h1>
-            
-            {identity && identity.isLoggedIn ? (
+              </h1>
 
-              <>
-                <Form reloadIdeas={reloadIdeas} id="insertForm" />
+              {identity && identity.isLoggedIn ? (
 
-                {notes ? (
-                  <ul>
-                    {notes.map(note => (
-                      <li key={note._id}>
-                        <Note note={note} reloadIdeas={reloadIdeas} />
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
+                <>
+                  <Form reloadIdeas={reloadIdeas} id="insertForm" />
+
+                  {notes ? (
+                    <ul>
+                      {notes.map(note => (
+                        <li key={note._id}>
+                          <Note note={note} reloadIdeas={reloadIdeas} />
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                      <div className="has-text-centered">
+                        <p>Loading ideas...</p>
+                        <progress className="progress is-large is-info" max="100">60%</progress>
+                      </div>
+                    )}
+                </>
+
+              ) : (
+
+                  <>
                     <div className="has-text-centered">
-                      <p>Loading ideas...</p>
-                      <progress className="progress is-large is-info" max="100">60%</progress>
+                      <button className="button is-link is-large is-uppercase" onClick={() => setDialog(true)}>
+                        {isLoggedIn ? `Hey ${name}, log out here` : 'Log in'}
+                      </button>
+
+                      {!isLoggedIn ? (
+                        <p id="loginDetails">Use <strong>demo@test.com</strong> as email and <strong>demotest</strong> as password.</p>
+                      ) : ''}
                     </div>
-                  )}
-              </>
+                  </>
 
-            ) : (
+                )}
 
-              <>
-                <div className="has-text-centered">
-                    <button className="button is-link is-large is-uppercase" onClick={() => setDialog(true)}>
-                    {isLoggedIn ? `Hey ${name}, log out here` : 'Log in'}
-                  </button>
-                  
-                  {!isLoggedIn ? (
-                    <p id="loginDetails">Use <strong>demo@test.com</strong> as email and <strong>demotest</strong> as password.</p>
-                  ) : ''}
-                </div>
-              </>
-
-            )}
+            </div>
 
           </div>
+        </main>
 
+        <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
+      </section>
+
+      <footer className="section footer">
+        <div className="content has-text-centered">
+          <p>Created by <a href="https://davidhargitai.com">David Hargitai</a>. The source of this site can be found on <a href="https://github.com/dhargitai/idea-collector">GitHub</a>.</p>
         </div>
-      </main>
-
-      <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
-    </section>
+      </footer>
+    </>
   );
 }
