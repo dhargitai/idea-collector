@@ -13,3 +13,5 @@ Working demo: [https://ideacollector.netlify.com/](https://ideacollector.netlify
 - React frontend source
 - Generated static frontend files with Gatsby
 - Font Awesome icons
+- Using Bulma CSS for styling with SASS
+- Using browser's Fetch API instead of axios

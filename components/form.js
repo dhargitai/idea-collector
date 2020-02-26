@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 const Form = ({reloadIdeas}) => {
   const [text, setText] = useState('');
@@ -16,7 +15,13 @@ const Form = ({reloadIdeas}) => {
       return;
     }
 
-    await axios.post('/api/create-note', { text });
+    await fetch('/api/create-note', {
+      method: 'POST',
+      body: JSON.stringify({ text }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
 
     setText('');
     setIsLoading(false);

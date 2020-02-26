@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import IdentityModal, { useIdentityContext } from 'react-netlify-identity-widget';
 import 'react-netlify-identity-widget/styles.css'
 import Note from '../../components/note';
@@ -25,7 +24,7 @@ export default () => {
       return;
     }
 
-    axios('/api/get-all-notes').then(result => {
+    fetch('/api/get-all-notes').then(async result => {
       if (canceled) {
         return;
       }
@@ -36,7 +35,9 @@ export default () => {
         return;
       }
 
-      setNotes(result.data.notes);
+      const data = await result.json();
+      const { notes } = data;
+      setNotes(notes);
       setStatus('loaded');
 
       return () => {

@@ -7,7 +7,6 @@
     "@reach/dialog": "^0.8.5",
     "@reach/tabs": "^0.8.5",
     "@reach/visually-hidden": "^0.8.2",
-    "axios": "^0.19.2",
     "bulma": "^0.8.0",
     "dotenv": "^8.2.0",
     "gatsby": "^2.19.19",
