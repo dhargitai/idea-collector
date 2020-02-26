@@ -4,15 +4,20 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@reach/dialog": "^0.8.5",
+    "@reach/tabs": "^0.8.5",
+    "@reach/visually-hidden": "^0.8.2",
     "axios": "^0.19.2",
     "bulma": "^0.8.0",
     "dotenv": "^8.2.0",
     "gatsby": "^2.19.19",
+    "gatsby-plugin-netlify-identity": "0.0.3",
     "gatsby-plugin-sass": "^2.1.29",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-icons": "^3.9.0"
+    "react-icons": "^3.9.0",
+    "react-netlify-identity-widget": "^0.2.7"
   },
   "devDependencies": {},
   "scripts": {

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import IdentityModal, { useIdentityContext } from 'react-netlify-identity-widget';
+import 'react-netlify-identity-widget/styles.css'
 import Note from '../../components/note';
 import Form from '../../components/form';
 import { IconContext } from "react-icons";
@@ -11,6 +13,11 @@ export default () => {
   const [notes, setNotes] = useState(null);
 
   const reloadIdeas = () => setStatus('loading');
+
+  const identity = useIdentityContext();
+  const [dialog, setDialog] = useState(false);
+  const name = (identity && identity.user && identity.user.user_metadata && identity.user.user_metadata.full_name) || 'NoName';
+  const isLoggedIn = identity && identity.isLoggedIn;
 
   useEffect(() => {
     let canceled = false;
@@ -49,26 +56,49 @@ export default () => {
               <IconContext.Provider value={{ color: "#ffaa22" }}><FaLightbulb /></IconContext.Provider>
             </h1>
             
-            <Form reloadIdeas={reloadIdeas} id="insertForm" />
+            {identity && identity.isLoggedIn ? (
 
-            {notes ? (
-              <ul>
-                {notes.map(note => (
-                  <li key={note._id}>
-                    <Note note={note} reloadIdeas={reloadIdeas} />
-                  </li>
-                ))}
-              </ul>
+              <>
+                <Form reloadIdeas={reloadIdeas} id="insertForm" />
+
+                {notes ? (
+                  <ul>
+                    {notes.map(note => (
+                      <li key={note._id}>
+                        <Note note={note} reloadIdeas={reloadIdeas} />
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                    <div className="has-text-centered">
+                      <p>Loading ideas...</p>
+                      <progress className="progress is-large is-info" max="100">60%</progress>
+                    </div>
+                  )}
+              </>
+
             ) : (
-              <div className="has-text-centered">
-                  <p>Loading ideas...</p>
-                  <progress className="progress is-large is-info" max="100">60%</progress>
-              </div>
+
+              <>
+                <div className="has-text-centered">
+                    <button className="button is-link is-large is-uppercase" onClick={() => setDialog(true)}>
+                    {isLoggedIn ? `Hey ${name}, log out here` : 'Log in'}
+                  </button>
+                  
+                  {!isLoggedIn ? (
+                    <p id="loginDetails">Use <strong>demo@test.com</strong> as email and <strong>demotest</strong> as password.</p>
+                  ) : ''}
+                </div>
+              </>
+
             )}
+
           </div>
 
         </div>
       </main>
+
+      <IdentityModal showDialog={dialog} onCloseDialog={() => setDialog(false)} />
     </section>
   );
 }
