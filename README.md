@@ -2,6 +2,8 @@ Working demo: [https://ideacollector.netlify.com/](https://ideacollector.netlify
 
 # Learning project: Idea Collector
 
+![Screenshot](https://i.imgur.com/9w0NouS.png)
+
 ## Features
 
 - Full featured authentication with Netlify Identity
